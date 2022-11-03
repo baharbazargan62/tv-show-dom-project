@@ -10,7 +10,13 @@
 
   <body>
     <div id="root">
+      <div id="searh-form" action="/action_page.php">
+        <select id="select-option"></select>
+        <input type="search" id="search-input" name="search">
+        <label for="search">Displaying <span id="count-epispde"></span> episodes</label>
+      </div>
        <section id="main-page"></section>
+
     </div>
     <!-- Loads a provided function called getAllEpisodes() which returns all episodes -->
     <script src="episodes.js"></script>
