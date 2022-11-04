@@ -45,7 +45,7 @@ p{
 
 .main {
   display: grid;
-  grid-template-columns: 450px 450px 450px;
+  grid-template-columns: 350px 350px 350px;
   grid-template-rows: auto;
   gap: 2rem;
   background-color: var(--primary-color);
