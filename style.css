@@ -37,6 +37,7 @@ h3{
 img{
   justify-self:left;
   height: 200px;
+  width: 90%;
 }
 p{
   font-size: large;
