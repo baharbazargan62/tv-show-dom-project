@@ -25,6 +25,12 @@ function makePageForEpisodes(episodeList) {
  }
  rootElem.innerHTML='';
   rootElem.appendChild(sectionEl)
+  let footer=document.createElement("footer")
+    let link=document.createElement("a")
+    link.setAttribute("href","https://www.tvmaze.com/")
+    link.innerText="TVMaze.com"
+    rootElem.appendChild(footer)
+    footer.appendChild(link)
   }
   let input=document.getElementById('searchinput')
   input.addEventListener('keyup',(event)=>{
