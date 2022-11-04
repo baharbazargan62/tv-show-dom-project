@@ -7,20 +7,16 @@
     <link href="style.css" rel="stylesheet" />
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
   </head>
-
   <body>
-    <div id="root">
-      <div id="searh-form" action="/action_page.php">
-        <select id="select-option"></select>
-        <input type="search" id="search-input" name="search">
-        <label for="search">Displaying <span id="count-epispde"></span> episodes</label>
-      </div>
-       <section id="main-page"></section>
-
+    <div id='key'>
+      <select id="secletedepisodes"></select>
+      <input type="search" id="searchinput" name="search">
+      <label for="search">Displaying <span id="count-epispde"></span> episodes</label>
+      <button id="make-allepisode" class="button-allepisode">Make all episodes</button>
     </div>
+      <div id="root"></div>
     <!-- Loads a provided function called getAllEpisodes() which returns all episodes -->
     <script src="episodes.js"></script>
-
     <!-- Loads YOUR javascript code -->
     <script src="script.js"></script>
   </body>

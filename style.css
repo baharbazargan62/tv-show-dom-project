@@ -1,51 +1,37 @@
-#root {
-  color: rgb(11, 10, 10);
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing: border-box;
+}
+:root{
+  --primary-color:rgb(26, 25, 25);
+  --secondry-color:rgb(217, 244, 242);
+  --tertiary-color:rgb(79, 189, 189);
 }
 
-body {
-  margin: 0px;
-  padding: 0px;
-}
-#main-page {
-  display: grid;
-  grid-template-columns: 500px 500px 500px;
-  grid-template-rows: auto;
-  gap: 2em;
-  background-color: rgb(239, 247, 245);
-  grid-auto-columns: max-content;
-  
-  
-}
-#searh-form{
-  padding:20px;
-  background-color: azure;
-  
-}
 /* article */
 .each-film {
-  background-color: rgb(228, 240, 238);
+  background-color: var(--secondry-color);
   padding: 1em;
   margin-left: 2.5em;
-  box-shadow: 12px 12px 2px 1px rgba(160, 160, 193, 0.2);
+  box-shadow: 12px 12px 2px 1px rgba(195, 216, 206, 0.2);
   border-radius: 10px,;
 }
 /* h3 */
-.header{
-  border: 2px solid  rgb(78, 67, 67);
+h3{
+  border: 2px solid  rgb(42, 38, 38);
   border-radius: 20px;
-  background-color: rgb(33, 88, 71);
+  background-color: rgb(114, 179, 158);
   font-family:Arial, Helvetica, sans-serif;
   padding: 20px;
+  margin: 10px;
   text-align: center;
   font-size: larger;
  
 }
-#searh-form{
-  background-color: rgb(36, 30, 30);
-  height: 50px;
-}
 #count-epispde,label{
-  color: beige;
+  color: rgb(231, 243, 242);
   font-size: large;
 }
 img{
@@ -55,6 +41,40 @@ img{
 p{
   font-size: large;
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif
+}
+
+.main {
+  display: grid;
+  grid-template-columns: 450px 450px 450px;
+  grid-template-rows: auto;
+  gap: 2rem;
+  background-color: var(--primary-color);
+  justify-content: center;
+}
+
+#secletedepisodes{
+  padding:10px;
+  border-radius: 5px;
+  margin: 1em;
+  background-color: var(--secondry-color);
+  color:(var(--primary-color))
+}
+#searchinput{
+  padding:10px;
+  border-radius: 5px;
+  margin-left: 2rem;
+  background-color: var(--secondry-color);
+  color:(var(--primary-color))
+}
+#key{
+background-color: var(--primary-color);
+}
+#make-allepisode{
+  margin: 2em;
+  padding: 1em;
+  background-color:var(--tertiary-color);
+  font-size: 1rem;
+
 }
 
 
