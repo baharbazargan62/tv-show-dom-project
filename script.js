@@ -1,9 +1,48 @@
 // You can edit ALL of the code here
 //You can edit ALL of the code here
 // 
+function getFetch(){
+  fetch("https://api.tvmaze.com/shows/179/episodes")
+  .then(response=>response.json())
+  .then(response=>{
+    makePageForEpisodes(response)
+    let input=document.getElementById('searchinput')
+    input.addEventListener('keyup',(event)=>{
+      let episodes=response
+      const searchValue=event.target.value
+       const filteredepisodes=episodes.filter(episode=>{return (episode.name.toLowerCase().includes(searchValue.toLowerCase())||episode.summary.toLowerCase().includes(searchValue.toLowerCase()))
+      })
+      let spanEl=document.getElementById('count-epispde')
+       spanEl.innerText=filteredepisodes.length +' / '+ episodes.length
+       makePageForEpisodes(filteredepisodes)
+     })
+     const selectedepisode=document.getElementById('secletedepisodes')
+      episodes=response
+    episodes.forEach(episode=>{
+      let optionEl=document.createElement('option')
+      selectedepisode.appendChild(optionEl)
+      optionEl.setAttribute('value',episode.id)
+      optionEl.innerText=episode.season.toString().padStart(3,"S0")+episode.number.toString().padStart(3,"E0")+"-"+episode.name
+    })
+    selectedepisode.addEventListener('change',(element , event)=>{
+      console.log('el->', )
+      console.log('event->', event)
+      let episodes=response
+      // let e=optionEl.target.value
+    
+      episodes.forEach(episode=>{if(episode.id==selectedepisode.value){
+        makePageForEpisodes([episode])
+      }
+    })
+    })
+    let button=document.getElementById("make-allepisode");
+    button.addEventListener("click",setup)
+    .catch(error=>console.log(error))
+  })
+}
 function setup() {
-  const allEpisodes = getAllEpisodes();
-  makePageForEpisodes(allEpisodes);
+  const allEpisodes = getFetch();
+  // makePageForEpisodes(allEpisodes);
 }
 function makePageForEpisodes(episodeList) {
     const rootElem = document.getElementById("root")
@@ -32,34 +71,7 @@ function makePageForEpisodes(episodeList) {
     rootElem.appendChild(footer)
     footer.appendChild(link)
   }
-  let input=document.getElementById('searchinput')
-  input.addEventListener('keyup',(event)=>{
-    let episodes=getAllEpisodes()
-    const searchValue=event.target.value
-     const filteredepisodes=episodes.filter(episode=>{return (episode.name.toLowerCase().includes(searchValue.toLowerCase())||episode.summary.toLowerCase().includes(searchValue.toLowerCase()))
-    })
-    let spanEl=document.getElementById('count-epispde')
-     spanEl.innerText=filteredepisodes.length +' / '+ episodes.length
-     makePageForEpisodes(filteredepisodes)
-   })
-   const selectedepisode=document.getElementById('secletedepisodes')
-    episodes=getAllEpisodes()
-  episodes.forEach(episode=>{
-    let optionEl=document.createElement('option')
-    selectedepisode.appendChild(optionEl)
-    optionEl.setAttribute('value',episode.id)
-    optionEl.innerText=episode.season.toString().padStart(3,"S0")+episode.number.toString().padStart(3,"E0")+"-"+episode.name
-  })
-  selectedepisode.addEventListener('change',()=>{
-    let episodes=getAllEpisodes()
-    // let e=optionEl.target.value
-    episodes.forEach(episode=>{if(episode.id==event.target.value){
-      makePageForEpisodes([episode])
-    }
-  })
-  })
-  let button=document.getElementById("make-allepisode");
-  button.addEventListener("click",setup)
+
  window.onload = setup;
 
 
