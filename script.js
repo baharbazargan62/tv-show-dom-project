@@ -1,8 +1,12 @@
 // You can edit ALL of the code here
 //You can edit ALL of the code here
-// 
-function getFetch(){
-  fetch("https://api.tvmaze.com/shows/179/episodes")
+//
+let allShows=getAllShows();
+console.log(allShows);
+
+function getFetch(showid){
+  let url=`https://api.tvmaze.com/shows/${showid}/episodes`
+  fetch(url)
   .then(response=>response.json())
   .then(response=>{
     makePageForEpisodes(response)
@@ -16,33 +20,18 @@ function getFetch(){
        spanEl.innerText=filteredepisodes.length +' / '+ episodes.length
        makePageForEpisodes(filteredepisodes)
      })
-     const selectedepisode=document.getElementById('secletedepisodes')
-      episodes=response
-    episodes.forEach(episode=>{
-      let optionEl=document.createElement('option')
-      selectedepisode.appendChild(optionEl)
-      optionEl.setAttribute('value',episode.id)
-      optionEl.innerText=episode.season.toString().padStart(3,"S0")+episode.number.toString().padStart(3,"E0")+"-"+episode.name
-    })
-    selectedepisode.addEventListener('change',(element , event)=>{
-      console.log('el->', )
-      console.log('event->', event)
-      let episodes=response
-      // let e=optionEl.target.value
-    
-      episodes.forEach(episode=>{if(episode.id==selectedepisode.value){
-        makePageForEpisodes([episode])
-      }
-    })
-    })
+    firstSelect(response)
     let button=document.getElementById("make-allepisode");
     button.addEventListener("click",setup)
+     })
     .catch(error=>console.log(error))
-  })
+ 
 }
 function setup() {
-  const allEpisodes = getFetch();
-  // makePageForEpisodes(allEpisodes);
+  // const allEpisodes = getFetch();
+  let allEpisodes=getAllEpisodes()
+  makePageForEpisodes(allEpisodes);
+ firstSelect(allEpisodes)
 }
 function makePageForEpisodes(episodeList) {
     const rootElem = document.getElementById("root")
@@ -71,10 +60,43 @@ function makePageForEpisodes(episodeList) {
     rootElem.appendChild(footer)
     footer.appendChild(link)
   }
+  let showSelect=document.querySelector("#selectedshow")
+  allShows.forEach((show) => {
+    const option = document.createElement("option"); // create option element for each ep and fill the select dropdown
+    showSelect.appendChild(option);
+    option.innerText = `${show.name}`
+    option.setAttribute('value',show.id)
+  })
+   showSelect.addEventListener('change',()=>{
+    allShows.forEach(show=>{
+      let showid=event.target.value
+      console.log(showid)
+      let url=`https://api.tvmaze.com/shows/${showid}/episodes`
+      getFetch(showid)
+    })
+   })
 
  window.onload = setup;
+function firstSelect(){
+  const selectedepisode=document.getElementById('secletedepisodes')
+  episodes=getAllEpisodes()
+episodes.forEach(episode=>{
+  let optionEl=document.createElement('option')
+  selectedepisode.appendChild(optionEl)
+  optionEl.setAttribute('value',episode.id)
+  optionEl.innerText=episode.season.toString().padStart(3,"S0")+episode.number.toString().padStart(3,"E0")+"-"+episode.name
+})
+selectedepisode.addEventListener('change',(element , event)=>{
+  let episodes=response
+  let e=optionEl.target.value
 
-
+  episodes.forEach(episode=>{
+    if(episode.id==e){
+    makePageForEpisodes([episode])
+  }
+})
+})
+}
 
 
 
