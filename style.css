@@ -5,9 +5,9 @@
   box-sizing: border-box;
 }
 :root{
-  --primary-color:rgb(26, 25, 25);
-  --secondry-color:rgb(217, 244, 242);
-  --tertiary-color:rgb(79, 189, 189);
+  --primary-color:rgb(11, 10, 10);
+  --secondry-color:rgb(80, 205, 143);
+  --tertiary-color:rgb(78, 142, 105);
 }
 
 /* article */
@@ -22,7 +22,7 @@
 h3{
   border: 2px solid  rgb(42, 38, 38);
   border-radius: 20px;
-  background-color: rgb(114, 179, 158);
+  background-color:var(--tertiary-color);
   font-family:Arial, Helvetica, sans-serif;
   padding: 20px;
   margin: 10px;
@@ -46,11 +46,11 @@ p{
 
 .main {
   display: grid;
-  grid-template-columns: 450px 450px 450px;
+  grid-template-columns: 350px 350px 350px;
   grid-template-rows: auto;
   gap: 2rem;
   background-color: var(--primary-color);
-  justify-content: center;
+  justify-content: left;
 }
 
 #secletedepisodes{
@@ -82,6 +82,10 @@ footer{
   background-color: var(--secondry-color);
   text-align: center;
   font-size: x-large;
+}
+#selectedshow{
+padding: 0.75em;
+background-color: var(--secondry-color);
 }
 
 

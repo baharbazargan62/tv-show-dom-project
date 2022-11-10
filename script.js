@@ -28,8 +28,8 @@ function getFetch(showid) {
       });
       firstSelect(response)
 
-      let button = document.getElementById("make-allepisode");
-      button.addEventListener("click", setup);
+      // let button = document.getElementById("make-allepisode");
+      // button.addEventListener("click", setup);
     })
     .catch((error) => console.log(error));
 }
