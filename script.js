@@ -1,9 +1,59 @@
 // You can edit ALL of the code here
 //You can edit ALL of the code here
 //
-let allShows = getAllShows();
-console.log(allShows);
+window.onload = setup;
+let allShows = getAllShows().sort((a, b) => a.name.localeCompare(b.name));
+
+function makePageForShows(shows){
+  let allShows = getAllShows(); 
+  const sectionEl = document.createElement("section")
+  sectionEl.setAttribute("class","show-section")
+  rootElem.appendChild(sectionEl);
+  allShows.sort((a, b) => a.name.localeCompare(b.name)).forEach(show=>{
+  const articleEl=document.createElement("article");
+  const sectionShow=document.createElement("section")
+  const h3 = document.createElement("h3");
+  const image = document.createElement("img");
+  let pragragh = document.createElement("p");
+  sectionEl.appendChild(articleEl);
+  articleEl.setAttribute("class", "each-show");
+  articleEl.setAttribute("id",show.id);
+  articleEl.appendChild(h3);
+  articleEl.appendChild(image);
+  articleEl.appendChild(pragragh);
+  h3.innerText=show.name;
+  image.src=show.image?.medium;
+  pragragh.innerHTML=show.summary.slice(0,200);
+  let ul=document.createElement("ul");
+  ul.setAttribute("class","ul-article");
+  articleEl.appendChild(ul);
+  let li1=document.createElement("li");
+  let li2=document.createElement("li");
+  let li3=document.createElement("li");
+  let li4=document.createElement("li");
+  ul.appendChild(li1);
+  ul.appendChild(li2);
+  ul.appendChild(li3);
+  ul.appendChild(li4);
+  li1.innerText=`Rated:${show.rating.average}`;
+  li2.innerText=`Genres:${show.genres}`;
+  li3.innerText=`Status:${show.status}`;
+  li4.innerText=`Runtime:${show.runtime}`;
+  articleEl.addEventListener("click",(()=>{
+  getFetch(show.id);
+  }))
+ }
+  )
+ 
+}
+function setup() {
+
+  let allShows=getAllShows()
+  makePageForShows(allShows);
+
+}
 const selectedepisode = document.getElementById("secletedepisodes");
+const rootElem = document.getElementById("root");
 
 function getFetch(showid) {
   let url = `https://api.tvmaze.com/shows/${showid}/episodes`;
@@ -26,33 +76,24 @@ function getFetch(showid) {
         spanEl.innerText = filteredepisodes.length + " / " + episodes.length;
         makePageForEpisodes(filteredepisodes);
       });
-      firstSelect(response)
-
-      // let button = document.getElementById("make-allepisode");
-      // button.addEventListener("click", setup);
+      firstSelect(response);
     })
     .catch((error) => console.log(error));
 }
-function setup() {
-  // const allEpisodes = getFetch();
-  let allEpisodes = getAllEpisodes();
-  makePageForEpisodes(allEpisodes);
-  // firstSelect(allEpisodes);
-}
+
 function makePageForEpisodes(episodeList) {
-  const rootElem = document.getElementById("root");
-  const sectionEl = document.createElement("section");
-  sectionEl.setAttribute("class", "main");
+  const sectionEl1 = document.createElement("section");
+  sectionEl1.setAttribute("class", "main");
   for (let episode of episodeList) {
-    const articleEl = document.createElement("article");
+    const articleEl1 = document.createElement("article");
     const h3 = document.createElement("h3");
     const image = document.createElement("img");
     let pragragh = document.createElement("p");
-    sectionEl.appendChild(articleEl);
-    articleEl.setAttribute("class", "each-film");
-    articleEl.appendChild(h3);
-    articleEl.appendChild(image);
-    articleEl.appendChild(pragragh);
+    sectionEl1.appendChild(articleEl);
+    articleEl1.setAttribute("class", "each-film");
+    articleEl1.appendChild(h3);
+    articleEl1.appendChild(image);
+    articleEl1.appendChild(pragragh);
     h3.innerText =
       episode.name +
       "-" +
@@ -62,7 +103,7 @@ function makePageForEpisodes(episodeList) {
     pragragh.innerHTML = episode.summary;
   }
   rootElem.innerHTML = "";
-  rootElem.appendChild(sectionEl);
+  rootElem.appendChild(sectionEl1);
   let footer = document.createElement("footer");
   let link = document.createElement("a");
   link.setAttribute("href", "https://www.tvmaze.com/");
@@ -86,7 +127,7 @@ showSelect.addEventListener("change", () => {
   });
 });
 
-window.onload = setup;
+// window.onload = setup;
 function firstSelect(episodeList) {
   episodeList.forEach((episode) => {
 
@@ -107,4 +148,15 @@ function firstSelect(episodeList) {
       }
     });
   });
+}
+function disappearStuff(){
+  let input = document.getElementById("searchinput");
+
+  input.innerHTML=""
+  selectedepisode.innerHTML=""
+
+
+}
+function apearStuff(){
+
 }
