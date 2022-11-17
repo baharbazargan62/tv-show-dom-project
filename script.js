@@ -40,7 +40,7 @@ function makePageForShows(shows){
   li3.innerText=`Status:${show.status}`;
   li4.innerText=`Runtime:${show.runtime}`;
   articleEl.addEventListener("click",(()=>{
-  getFetch(show.id);
+  getFetch(show.id)
   }))
  }
   )
@@ -82,18 +82,18 @@ function getFetch(showid) {
 }
 
 function makePageForEpisodes(episodeList) {
-  const sectionEl1 = document.createElement("section");
-  sectionEl1.setAttribute("class", "main");
+  const sectionEl = document.createElement("section");
+  sectionEl.setAttribute("class", "main");
   for (let episode of episodeList) {
-    const articleEl1 = document.createElement("article");
+    const articleEl = document.createElement("article");
     const h3 = document.createElement("h3");
     const image = document.createElement("img");
     let pragragh = document.createElement("p");
-    sectionEl1.appendChild(articleEl);
-    articleEl1.setAttribute("class", "each-film");
-    articleEl1.appendChild(h3);
-    articleEl1.appendChild(image);
-    articleEl1.appendChild(pragragh);
+    sectionEl.appendChild(articleEl);
+    articleEl.setAttribute("class", "each-film");
+    articleEl.appendChild(h3);
+    articleEl.appendChild(image);
+    articleEl.appendChild(pragragh);
     h3.innerText =
       episode.name +
       "-" +
@@ -103,7 +103,7 @@ function makePageForEpisodes(episodeList) {
     pragragh.innerHTML = episode.summary;
   }
   rootElem.innerHTML = "";
-  rootElem.appendChild(sectionEl1);
+  rootElem.appendChild(sectionEl);
   let footer = document.createElement("footer");
   let link = document.createElement("a");
   link.setAttribute("href", "https://www.tvmaze.com/");
@@ -148,15 +148,4 @@ function firstSelect(episodeList) {
       }
     });
   });
-}
-function disappearStuff(){
-  let input = document.getElementById("searchinput");
-
-  input.innerHTML=""
-  selectedepisode.innerHTML=""
-
-
-}
-function apearStuff(){
-
 }
