@@ -5,7 +5,9 @@ window.onload = setup;
 let allShows = getAllShows().sort((a, b) => a.name.localeCompare(b.name));
 
 function makePageForShows(shows){
-  let allShows = getAllShows(); 
+  let allShows = getAllShows();
+  let spanEpi=document.getElementById("span-epi")
+  spanEpi.style.display="none";
   const sectionEl = document.createElement("section")
   sectionEl.setAttribute("class","show-section")
   rootElem.appendChild(sectionEl);
@@ -50,6 +52,9 @@ function setup() {
 
   let allShows=getAllShows()
   makePageForShows(allShows);
+  searchinputshow(allShows);
+  selectedepisode.style.display="none"
+  // input.style.display="none"
 
 }
 const selectedepisode = document.getElementById("secletedepisodes");
@@ -61,7 +66,7 @@ function getFetch(showid) {
     .then((response) => response.json())
     .then((response) => {
       makePageForEpisodes(response);
-
+      selectedepisode.style.display="inline"
       let input = document.getElementById("searchinput");
       input.addEventListener("keyup", (event) => {
         let episodes = response;
@@ -149,3 +154,20 @@ function firstSelect(episodeList) {
     });
   });
 }
+function searchinputshow(){
+  let input = document.getElementById("searchinput");
+  input.addEventListener("keyup", (event) => {
+    allShows=getAllShows()
+    const searchValue = event.target.value;
+    const filtereShows = allShows.filter((allShow) => {
+      return (
+        allShow.name.toLowerCase().includes(searchValue.toLowerCase()) 
+      );
+    });
+    let spanEl = document.getElementById("count-epispde");
+    spanEl.innerText = filtereShows.length + " / " + allShows.length ;
+    let spanEpi=document.getElementById("span-epi")
+    spanEpi.style.display="none"
+    makePageForShows(filtereShows);
+  });
+  }
