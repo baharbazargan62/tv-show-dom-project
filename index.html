@@ -3,19 +3,29 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TV Show Project | My Name (My GitHub username)</title>
+    <title>TV Show Project | BahareBazargan(BaharBazargan62)</title>
     <link href="style.css" rel="stylesheet" />
     <link rel="icon" href="/favicon.ico" type="image/x-icon" />
   </head>
-
   <body>
-    <div id="root">
+    <!-- <div>
+     <select id="selectedshow"></select> -->
+    <!-- </div>  -->
+    <div id='key'>
+      <select id="selectedshow"></select>
+      <select id="secletedepisodes" title="choose an episode"></select>
+      <input type="search" id="searchinput" name="search">
+      <label for="search">Displaying <span id="count-epispde"></span> <span id="span-epi">episodes</span></label>
+      <!-- <button id="button-shows">Go back to shows</button> -->
+      <!-- <button id="make-allepisode" class="button-allepisode">Make all episodes</button> -->
     </div>
-
+      <div id="root">
+      </div>
     <!-- Loads a provided function called getAllEpisodes() which returns all episodes -->
     <script src="episodes.js"></script>
-
     <!-- Loads YOUR javascript code -->
+    <script src="shows.js"></script>
     <script src="script.js"></script>
+    
   </body>
 </html>
